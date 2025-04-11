@@ -1,41 +1,55 @@
 @import "tailwindcss";
-*::selection{
-    color: white;
-    background-color: #FF3811;
-  }
+*::selection {
+  color: white;
+  background-color: #ff3811;
+}
+:root {
+  --swiper-theme-color: #ff3811; /* Change this to your desired color */
+}
 
-.button-outline-red{
-    cursor: pointer;
-    border: 1px solid #FF3811;
-    border-radius: 5px;
-    padding: 10px 20px;
-    color: #FF3811;
-    font-weight: bold;
+.button-outline-red {
+  cursor: pointer;
+  border: 1px solid #ff3811;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: #ff3811;
+  font-weight: bold;
 }
-.button-outline-red:hover{
-    background-color: #FF3811;
-    color: white;
+.button-outline-red:hover {
+  background-color: #ff3811;
+  color: white;
 }
-.button-outline-white{
-    cursor: pointer;
-    border: 1px solid white;
-    border-radius: 5px;
-    padding: 14px 20px;
-    color: white;
-    font-weight: bold;
+.button-outline-white {
+  cursor: pointer;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 14px 20px;
+  color: white;
+  font-weight: bold;
 }
-.button-outline-white:hover{
-    background-color: white;
-    color: #FF3811;
+.button-outline-white:hover {
+  background-color: white;
+  color: #ff3811;
 }
-.button-solid-red{
-    cursor: pointer;
-    border-radius: 5px;
-    padding: 15px 20px;
-    color: white;
-    font-weight: bold;
-    background-color: #FF3811;
+.button-solid-red {
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 15px 20px;
+  color: white;
+  font-weight: bold;
+  background-color: #ff3811;
 }
-.button-solid-red:hover{
-    background-color: #ff3911d8;
+.button-solid-red:hover {
+  background-color: #ff3911d8;
+}
+.swiper-pagination-bullet {
+  background: #ff3811 !important; /* Ensures it applies */
+  opacity: 1;
+}
+
+/* Active bullet styling */
+.swiper-pagination-bullet-active {
+  background: #ff3811 !important;
+  width: 12px;
+  height: 12px;
 }
