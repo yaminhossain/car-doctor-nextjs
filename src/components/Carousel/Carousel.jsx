@@ -76,7 +76,7 @@ const Carousel = () => {
             Next
           </button>
         </div> */}
-        {/* Overlay */}
+        {/*================= Overlay ===================*/}
         <div className="absolute top-0 w-full h-full bg-linear-to-r from-black/75 to-black/10 z-10 flex items-center justify-around">
           <div className="max-w-96 w-full text-white">
             <p className="text-lg md:text-6xl font-semibold">
@@ -93,6 +93,7 @@ const Carousel = () => {
               </button>
             </div>
           </div>
+          {/*====================== Navigation Buttons =================*/}
           <div className="flex gap-2 self-end h-[calc(100%-75%)]">
             <SwiperButtonPrev className="cursor-pointer bg-white/50 text-white hover:bg-[#FF3811] p-1 md:p-3 size-8 md:size-16 rounded-full text-2xl md:text-4xl"></SwiperButtonPrev>
             <SwiperButtonNext className="cursor-pointer bg-white/50 text-white hover:bg-[#FF3811] p-1 md:p-3 size-8 md:size-16  rounded-full text-2xl md:text-4xl"></SwiperButtonNext>

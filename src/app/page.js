@@ -5,6 +5,7 @@ import ContactBanner from "@/components/ContactBanner/ContactBanner";
 import PopularProductSection from "./PopularProductSection";
 import TeamSection from "./TeamSection";
 import CoreFeatureSection from "./CoreFeatureSection";
+import TestimonialSection from "./TestimonialSection";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <PopularProductSection></PopularProductSection>
       <TeamSection></TeamSection>
       <CoreFeatureSection></CoreFeatureSection>
+      <TestimonialSection></TestimonialSection>
     </div>
   );
 }

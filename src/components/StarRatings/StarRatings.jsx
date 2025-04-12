@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Rating } from "@smastrom/react-rating";
 
-const StarRatings = ({ ratingStyle }) => {
+const StarRatings = ({ ratingStyle,ratingProps }) => {
   const [rating, setRating] = useState(3);
 
   return (
@@ -10,7 +10,7 @@ const StarRatings = ({ ratingStyle }) => {
       style={ratingStyle}
       className="max-w-[180px]"
       readOnly
-      value={rating}
+      value={ratingProps || rating}
       onChange={setRating}
     />
   );
