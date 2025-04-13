@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 // react rating css styles
 import "@smastrom/react-rating/style.css";
+import Footer from "@/components/Footer/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className}`}>
         <Navbar></Navbar>
         <main className="max-w-7xl mx-auto pt-20">{children}</main>
+        <Footer></Footer>
       </body>
     </html>
   );
