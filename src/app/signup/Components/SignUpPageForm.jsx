@@ -5,6 +5,7 @@ import PasswordValidation from "./PasswordValidation";
 
 const SignUpPageForm = () => {
   const { register, handleSubmit } = useForm();
+  const [confirmPasswordOnFocus, setConfirmPasswordOnFocus] = useState(false);
 
   // ========Password field value============
   const [passwordValue, setPasswordValue] = useState("");
@@ -85,11 +86,16 @@ const SignUpPageForm = () => {
           placeholder="Enter your password again"
           type="password"
           onChange={confirmPasswordFieldHandled}
+          onFocus={() => setConfirmPasswordOnFocus(true)}
         />
-        {isValidPassword ? (
-          <p className="text-green-400 mt-1.5">Good to go!</p>
-        ) : (
-          <p className="text-red-400 mt-1.5">Password did not match!</p>
+        {confirmPasswordOnFocus && (
+          <div>
+            {isValidPassword ? (
+              <p className="text-green-400 mt-1.5">Good to go!</p>
+            ) : (
+              <p className="text-red-400 mt-1.5">Password did not match!</p>
+            )}
+          </div>
         )}
       </div>
       {/* ===========Sign Up button======================= */}
