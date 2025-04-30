@@ -10,7 +10,7 @@ const AppointmentSearchAndLogin = () => {
     router.push("/services");
   };
   //dummy user
-  const user = true;
+  const user = false;
 
   return (
     <div className="flex justify-baseline items-center gap-5">
@@ -23,12 +23,10 @@ const AppointmentSearchAndLogin = () => {
           <FaRegUser className="size-7 border rounded-full p-2" />
         </Link>
       ) : (
-        <button
-          className="button-outline-red ms-7"
-          onClick={() => navbarHandler()}
-        >
-          Log In
-        </button>
+        <Link href={"/signin"}>
+          {" "}
+          <button className="button-outline-red ms-7">Log In</button>
+        </Link>
       )}
     </div>
   );
