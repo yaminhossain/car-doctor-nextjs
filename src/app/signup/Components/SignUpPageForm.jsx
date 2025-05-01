@@ -1,19 +1,20 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import PasswordValidation from "./PasswordValidation";
+import { LuEyeClosed } from "react-icons/lu";
+import { FaEye } from "react-icons/fa6";
 
 const SignUpPageForm = () => {
   const { register, handleSubmit } = useForm();
   const [confirmPasswordOnFocus, setConfirmPasswordOnFocus] = useState(false);
-
+  const [passwordSeen, setPasswordSeen] = useState(false);
+ 
   // ========Password field value============
   const [passwordValue, setPasswordValue] = useState("");
-  console.log(passwordValue);
 
   // =======Password validity check for all validation========
   const [isValidPassword, setIsValidPassword] = useState(false);
-  console.log("Password Valid", isValidPassword);
 
   // Form submission handler
   const formHandler = (data) => console.log(data);
@@ -23,7 +24,7 @@ const SignUpPageForm = () => {
     setPasswordValue(e.target.value);
   };
   // ==========Confirm Password Field Event Handler=================
-  const confirmPasswordFieldHandled = (e) => {
+  const confirmPasswordFieldHandler = (e) => {
     const confirmPasswordValue = e.target.value;
     // -----Setting Password validity-----
     if (
@@ -63,13 +64,25 @@ const SignUpPageForm = () => {
       <div className="my-6">
         <label className="my-3 font-semibold text-gray-700">Password</label>{" "}
         <br />
-        <input
-          {...register("password")}
-          className="border border-gray-300 p-4 w-full  rounded-lg mt-3 focus:outline-0"
-          placeholder="Enter a strong password"
-          type="password"
-          onChange={passwordFieldHandled}
-        />
+        <div className="relative mt-3">
+          <input
+            {...register("password")}
+            className="border border-gray-300 p-4 w-full  rounded-lg  focus:outline-0"
+            placeholder="Enter a strong password"
+            type={`${passwordSeen ? "text" : "password"}`}
+            onChange={passwordFieldHandled}
+          />
+          {/* eye button */}
+          {passwordSeen ? (
+            <div onClick={() => setPasswordSeen(false)}>
+              <FaEye className="text-xl md:text-2xl text-gray-800 absolute right-2 bottom-1/2 top-1/2 -translate-y-1/2 cursor-pointer" />
+            </div>
+          ) : (
+            <div onClick={() => setPasswordSeen(true)}>
+              <LuEyeClosed className="text-xl md:text-2xl text-gray-800 absolute right-2 bottom-1/2 top-1/2 -translate-y-1/2 cursor-pointer" />
+            </div>
+          )}
+        </div>
       </div>
       {/* ==========Password Validation=============== */}
       <PasswordValidation passwordValue={passwordValue}></PasswordValidation>
@@ -80,14 +93,26 @@ const SignUpPageForm = () => {
           Confirm Password
         </label>{" "}
         <br />
-        <input
-          {...register("confirmPassword")}
-          className="border border-gray-300 p-4 w-full  rounded-lg mt-3 focus:outline-0"
-          placeholder="Enter your password again"
-          type="password"
-          onChange={confirmPasswordFieldHandled}
-          onFocus={() => setConfirmPasswordOnFocus(true)}
-        />
+        <div className="relative mt-3 ">
+          <input
+            {...register("confirmPassword")}
+            className="border border-gray-300 p-4 mt-3 w-full rounded-lg focus:outline-0"
+            placeholder="Enter your password again"
+            type={`${passwordSeen ? "text" : "password"}`}
+            onChange={confirmPasswordFieldHandler}
+            onFocus={() => setConfirmPasswordOnFocus(true)}
+          />
+          {/* eye button */}
+          {passwordSeen ? (
+            <div onClick={() => setPasswordSeen(false)}>
+              <FaEye className="text-xl md:text-2xl text-gray-800 absolute right-2 bottom-1/2 top-1/2 -translate-y-1/2 cursor-pointer" />
+            </div>
+          ) : (
+            <div onClick={() => setPasswordSeen(true)}>
+              <LuEyeClosed className="text-xl md:text-2xl text-gray-800 absolute right-2 bottom-1/2 top-1/2 -translate-y-1/2 cursor-pointer" />
+            </div>
+          )}
+        </div>
         {confirmPasswordOnFocus && (
           <div>
             {isValidPassword ? (
