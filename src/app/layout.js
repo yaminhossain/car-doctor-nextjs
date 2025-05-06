@@ -4,6 +4,8 @@ import Navbar from "@/components/Navbar/Navbar";
 // react rating css styles
 import "@smastrom/react-rating/style.css";
 import Footer from "@/components/Footer/Footer";
+import AuthProvider from "@/providers/AuthProvider";
+import { ToastContainer } from 'react-toastify';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,9 +21,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.className}`}>
-        <Navbar></Navbar>
-        <main className="max-w-7xl mx-auto pt-20">{children}</main>
-        <Footer></Footer>
+
+          <Navbar></Navbar>
+          <main className="max-w-7xl mx-auto pt-20">{children}</main>
+          <ToastContainer></ToastContainer>
+          <Footer></Footer>
+
       </body>
     </html>
   );

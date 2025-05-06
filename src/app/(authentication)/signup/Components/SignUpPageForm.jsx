@@ -4,20 +4,51 @@ import { useForm } from "react-hook-form";
 import PasswordValidation from "./PasswordValidation";
 import { LuEyeClosed } from "react-icons/lu";
 import { FaEye } from "react-icons/fa6";
+import registerUsers from "@/actions/auth/registerUsers";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+
 
 const SignUpPageForm = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit,reset } = useForm();
   const [confirmPasswordOnFocus, setConfirmPasswordOnFocus] = useState(false);
   const [passwordSeen, setPasswordSeen] = useState(false);
- 
+  const router = useRouter()
+
   // ========Password field value============
   const [passwordValue, setPasswordValue] = useState("");
 
   // =======Password validity check for all validation========
   const [isValidPassword, setIsValidPassword] = useState(false);
 
-  // Form submission handler
-  const formHandler = (data) => console.log(data);
+  // ============Form submission handler=========
+  const formHandler = (data) => {
+    const result = registerUsers(data);
+    result.then((data) => {
+      if (data.status === "failed") {
+        toast.error(data.message, {
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      } else if (data.status === "error") {
+        toast.warn(data.message, {
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      }
+      else if(data.status === "success" && data.userId){
+        toast.success("User account has been created successfully", {
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        reset();
+        router.push("/signin")
+      }
+    });
+  };
 
   // ==========Password Field on Focus=================
   const passwordFieldHandled = (e) => {
@@ -38,6 +69,7 @@ const SignUpPageForm = () => {
       setIsValidPassword(false);
     }
   };
+
   return (
     <form onSubmit={handleSubmit(formHandler)} className="py-4">
       {/* =====name field====== */}
@@ -48,6 +80,7 @@ const SignUpPageForm = () => {
           className="border border-gray-300 p-4 w-full rounded-lg mt-3 focus:outline-0"
           placeholder="Enter your name"
           type="text"
+          required
         />
       </div>
       {/* =====email field====== */}
@@ -58,6 +91,7 @@ const SignUpPageForm = () => {
           className="border border-gray-300 p-4 w-full rounded-lg mt-3 focus:outline-0"
           placeholder="Enter your email"
           type="email"
+          required
         />
       </div>
       {/* =====password field====== */}
@@ -71,6 +105,7 @@ const SignUpPageForm = () => {
             placeholder="Enter a strong password"
             type={`${passwordSeen ? "text" : "password"}`}
             onChange={passwordFieldHandled}
+            required
           />
           {/* eye button */}
           {passwordSeen ? (
@@ -101,6 +136,7 @@ const SignUpPageForm = () => {
             type={`${passwordSeen ? "text" : "password"}`}
             onChange={confirmPasswordFieldHandler}
             onFocus={() => setConfirmPasswordOnFocus(true)}
+            required
           />
           {/* eye button */}
           {passwordSeen ? (

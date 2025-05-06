@@ -1,2 +1,6 @@
-*React state render check.
 *Meta data heading for both Sign and sign up page
+*domain name setup for google recaptcha in the google cloud console after hosting.
+*NEXTAUTH_URL option for next auth after hosting the site.
+*SERCET option for NextAuth.
+*"use client" for <SessionProvider/>(Avoid using <SessionProvider></SessionProvider>)
+*recaptcha validation state=false
