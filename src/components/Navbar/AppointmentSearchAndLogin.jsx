@@ -4,13 +4,13 @@ import { IoSearch } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FaRegUser } from "react-icons/fa";
-const AppointmentSearchAndLogin = () => {
+const AppointmentSearchAndLogin = ({user}) => {
   const router = useRouter();
   const searchHandler = () => {
     router.push("/services");
   };
-  //dummy user
-  const user = false;
+  // //dummy user
+  // const user = false;
 
   return (
     <div className="flex justify-baseline items-center gap-5">

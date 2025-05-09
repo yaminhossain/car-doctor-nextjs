@@ -8,12 +8,11 @@ import registerUsers from "@/actions/auth/registerUsers";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
-
 const SignUpPageForm = () => {
-  const { register, handleSubmit,reset } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [confirmPasswordOnFocus, setConfirmPasswordOnFocus] = useState(false);
   const [passwordSeen, setPasswordSeen] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
   // ========Password field value============
   const [passwordValue, setPasswordValue] = useState("");
@@ -37,15 +36,14 @@ const SignUpPageForm = () => {
           pauseOnHover: true,
           draggable: true,
         });
-      }
-      else if(data.status === "success" && data.userId){
+      } else if (data.status === "success" && data.userId) {
         toast.success("User account has been created successfully", {
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
         });
         reset();
-        router.push("/signin")
+        router.push("/signin");
       }
     });
   };

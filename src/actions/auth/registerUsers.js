@@ -7,6 +7,9 @@ const registerUsers = async ({ name, email, confirmPassword: password }) => {
   const insertionData = { name, email, password };
   insertionData.photo = "";
   insertionData.coverPhoto = "";
+  insertionData.role = "user";
+  insertionData.provider = "emailPassword";
+  insertionData.providerAccountId = null;
 
   // ======Hashing the password using bcrypt and 10 round of salt=====
   const hashedPassword = await bcrypt.hash(password, 10);

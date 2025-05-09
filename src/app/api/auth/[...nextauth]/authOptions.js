@@ -1,5 +1,7 @@
 import loginUsers from "@/actions/auth/loginUsers";
+import socialProviderUsers from "@/actions/auth/socialProviderUsers";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions = {
   session: {
@@ -10,6 +12,7 @@ export const authOptions = {
     signIn: "/signin",
   },
   providers: [
+    // =================Email and Password Authentication======================
     CredentialsProvider({
       async authorize(credentials) {
         try {
@@ -25,5 +28,36 @@ export const authOptions = {
         }
       },
     }),
+    // =========Google Authentication===========
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
   ],
+  callbacks: {
+    async signIn({ user, account }) {
+      if (account) {
+        const { name, email, image } = user;
+        const { provider, providerAccountId } = account;
+        const payload = {
+          name,
+          email,
+          photo: image,
+          provider,
+          providerAccountId,
+          role: "user",
+          password: null,
+          coverPhoto: "",
+        };
+        const valid = await socialProviderUsers(payload);
+        if (valid.status === "failed") {
+          return false;
+        }
+      }
+      return true;
+    },
+    async redirect({  baseUrl }) {
+      return baseUrl
+    },
+  },
 };
