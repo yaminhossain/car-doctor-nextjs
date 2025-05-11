@@ -6,6 +6,7 @@ import PopularProductSection from "./PopularProductSection";
 import TeamSection from "./TeamSection";
 import CoreFeatureSection from "./CoreFeatureSection";
 import TestimonialSection from "./TestimonialSection";
+import Spinners from "@/components/Spinners/Spinners";
 
 export default function Home() {
   return (
