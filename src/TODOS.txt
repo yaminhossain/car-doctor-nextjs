@@ -1,0 +1,15 @@
+*Meta data heading for both Sign and sign up page
+*"use client" for <SessionProvider/>(Avoid using <SessionProvider></SessionProvider>)
+* NextAuth (redirect callback) function handling from authOptions.
+* NextAuth redirection handling after a successful login using social.
+* NextAuth fully recheck
+*Designing Loading.js file.
+*not-found.js hiding nav bar.
+*user authentication handling for email in socialProvider server action
+
+
+========================DONE===========DONE====================================================
+*[DONE]domain name setup for google reCaptcha in the google cloud console after hosting.
+*[DONE]domain name and redirect domain name setup for google cloud for authentication after hosting.
+*[DONE]NEXTAUTH_URL=https://example.com, option for next auth after hosting the site
+*[DONE] Vercel deployment related error handling.
