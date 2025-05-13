@@ -6,8 +6,10 @@ NextJs
 `Hosted with vercel`: [Car Doctor](https://car-doctor-nextjs-rho.vercel.app/)
 ## Features
 <ul>
-<li><b>DLETE</b> users</li>
+<li>Professional authentiaction system with custom email & password authentiaction, Google, Facebook, and GitHub</li>
 </ul>
 
 ## NPM libraries
-No specific NPM libraries are used in here
+<ul>
+<li><b>NextAuth.js:</b> For handling user authentication.</li>
+</ul>
