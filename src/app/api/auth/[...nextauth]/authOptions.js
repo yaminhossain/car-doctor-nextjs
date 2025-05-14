@@ -68,7 +68,7 @@ export const authOptions = {
       return token;
     },
     async session({ session, token }) {
-      session = token.user;
+      session.user = token.user;
       return session;
     },
     async redirect({ baseUrl }) {
