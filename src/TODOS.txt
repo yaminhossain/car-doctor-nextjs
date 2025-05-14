@@ -6,6 +6,9 @@
 *not-found.js hiding nav bar.
 *user authentication handling for email in socialProvider server action
 *loading skeleton for authentication route group
+* Adding https://car-doctor-nextjs-rho.vercel.app/api/auth/callback/google for google cloud authorized redirect URL. 
+* Adding https://car-doctor-nextjs-rho.vercel.app for google cloud authorize origin.
+* NextAuth callback handling for email and password auth for storing data in local storage.
 
 
 ========================DONE===========DONE====================================================

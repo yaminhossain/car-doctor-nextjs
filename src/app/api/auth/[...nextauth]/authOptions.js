@@ -2,12 +2,13 @@ import loginUsers from "@/actions/auth/loginUsers";
 import socialProviderUsers from "@/actions/auth/socialProviderUsers";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
 
 export const authOptions = {
   session: {
     strategy: "jwt",
   },
-  secret: process.env.NEXTAUTH_SECRET, 
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/signin",
   },
@@ -28,14 +29,20 @@ export const authOptions = {
         }
       },
     }),
-    // =========Google Authentication===========
+    // =========Google Authentication=============
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
+    // ==============Facebook Authentication=========
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+    }),
   ],
   callbacks: {
     async signIn({ user, account }) {
+      console.log("==========users from signin callbacks==========", user);
       if (account) {
         const { name, email, image } = user;
         const { provider, providerAccountId } = account;
@@ -56,8 +63,16 @@ export const authOptions = {
       }
       return true;
     },
-    async redirect({  baseUrl }) {
-      return baseUrl
+    async jwt({ token, user }) {
+      token.user = user;
+      return token;
+    },
+    async session({ session, token }) {
+      session = token.user;
+      return session;
+    },
+    async redirect({ baseUrl }) {
+      return baseUrl;
     },
   },
 };

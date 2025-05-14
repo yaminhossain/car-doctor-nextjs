@@ -12,7 +12,10 @@ const SocialLogin = () => {
       <div className="flex justify-center mt-5">
         {/* ----------facebook---------- */}
         <div className="relative group">
-          <button className="rounded-full p-2 border border-gray-300 cursor-pointer hover:bg-[#ff3811] hover:text-white">
+          <button
+            className="rounded-full p-2 border border-gray-300 cursor-pointer hover:bg-[#ff3811] hover:text-white"
+            onClick={() => socialLoginHandler("facebook")}
+          >
             <FaFacebookF className="text-3xl text-gray-700 hover:text-white" />
           </button>
           {/*-------- tool tips---- */}

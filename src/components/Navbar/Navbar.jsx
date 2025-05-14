@@ -9,7 +9,6 @@ import { getServerSession } from "next-auth";
 
 const Navbar = async() => {
   const user = await getServerSession();
-  console.log("============User Information=========",user);
   return (
     <div className="fixed w-full z-40 ">
       <nav className=" flex justify-between items-center max-w-7xl mx-auto py-2 px-2 overflow-hidden shadow-xs bg-white">
