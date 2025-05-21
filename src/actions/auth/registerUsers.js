@@ -5,10 +5,10 @@ import connectDB, { collectionNames } from "@/lib/connectDB";
 
 const registerUsers = async ({ name, email, confirmPassword: password }) => {
   const insertionData = { name, email, password };
-  insertionData.photo = "";
+  insertionData.image = "";
   insertionData.coverPhoto = "";
   insertionData.role = "user";
-  insertionData.provider = "emailPassword";
+  insertionData.provider = "credentials";
   insertionData.providerAccountId = null;
 
   // ======Hashing the password using bcrypt and 10 round of salt=====

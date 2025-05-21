@@ -5,12 +5,15 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FaRegUser } from "react-icons/fa";
 import SignOutButton from "../SignOutButton/SignOutButton";
-const AppointmentSearchAndLogin = ({ user }) => {
+import { useSession } from "next-auth/react";
+const AppointmentSearchAndLogin = () => {
+  // Accessing the session data using NextAuth's useSession() hook. Works for both social providers and credentials provider
+  const clientOnlyUser = useSession();
   const router = useRouter();
   const searchHandler = () => {
     router.push("/services");
   };
-  console.log("=======================user info=============",user);
+  // console.log("=======Server only user data======", user); // Not required as this is a client component and useSession() is providing the session data
   return (
     <div className="flex justify-baseline items-center gap-5">
       <LuCalendarClock className="size-6" />
@@ -18,7 +21,7 @@ const AppointmentSearchAndLogin = ({ user }) => {
         <IoSearch className="size-6 " />
       </button>
       {/* ---------IF user------ */}
-      {user ? (
+      {clientOnlyUser.status === "authenticated" ? (
         <div>
           <SignOutButton></SignOutButton>
           <Link href={"/user-profile"} className="hidden lg:block">

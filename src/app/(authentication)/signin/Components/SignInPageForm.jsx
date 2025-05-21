@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 const SignInPageForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const [passwordSeen, setPasswordSeen] = useState(false); // For eye button in password field
-  const [recaptchaValidation, setRecaptchaValidation] = useState(false);
+  const [recaptchaValidation, setRecaptchaValidation] = useState(true); // set false
   const router = useRouter();
 
   //=======Google reCAPTCHA handler============
@@ -27,7 +27,6 @@ const SignInPageForm = () => {
   const formHandler = async (data) => {
     const email = data.email;
     const password = data.password;
-    console.log("user data", email, password);
     try {
       const result = await signIn("credentials", {
         email,
@@ -35,6 +34,7 @@ const SignInPageForm = () => {
         redirect: false,
         callbackUrl: "/",
       });
+      // console.log("SignIn() function result for credential", result);
       if (result.ok) {
         reset();
         router.push("/");
@@ -49,7 +49,7 @@ const SignInPageForm = () => {
       console.log(e);
     }
   };
-  const loginHandler = () => {};
+  
   return (
     <form onSubmit={handleSubmit(formHandler)} className="py-4">
       {/* =====email field====== */}
@@ -99,7 +99,6 @@ const SignInPageForm = () => {
         <button
           type="submit"
           className="button-solid-red w-full"
-          onClick={loginHandler}
         >
           Log In
         </button>

@@ -15,7 +15,12 @@ export const authOptions = {
   providers: [
     // =================Email and Password Authentication======================
     CredentialsProvider({
+      // credentials: {
+      //   email: { label: "Email", type: "email" },
+      //   password: { label: "Password", type: "password" },
+      // },
       async authorize(credentials) {
+        // console.log("=========Credentials property=======",credentials);
         try {
           const data = await loginUsers(credentials);
           if (data.user && data.status === "success") {
@@ -44,12 +49,12 @@ export const authOptions = {
     async signIn({ user, account }) {
       console.log("==========users from signin callbacks==========", user);
       if (account) {
-        const { name, email, image } = user;
+        const { name, email, image:userImage } = user;
         const { provider, providerAccountId } = account;
         const payload = {
           name,
           email,
-          photo: image,
+          image: userImage,
           provider,
           providerAccountId,
           role: "user",
@@ -63,16 +68,20 @@ export const authOptions = {
       }
       return true;
     },
+    async redirect({ baseUrl }) {
+      return baseUrl;
+    },
     async jwt({ token, user }) {
-      token.user = user;
+      // console.log("user:", user);
+      // console.log("token:", token);
+      if (user) {
+        token.coverPhoto = user.coverPhoto;
+      }
       return token;
     },
     async session({ session, token }) {
-      session.user = token.user;
+      session.user.coverPhoto = token.coverPhoto;
       return session;
-    },
-    async redirect({ baseUrl }) {
-      return baseUrl;
     },
   },
 };

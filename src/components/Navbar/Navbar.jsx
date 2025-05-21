@@ -8,8 +8,10 @@ import ActiveLink from "./ActiveLink";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 
-const Navbar = async() => {
-  const user = await getServerSession(authOptions);
+const Navbar = async () => {
+  // const user = await getServerSession(authOptions);
+  // Serializing data in the server side for sending the data to client side as a props. We can also use spread operation like, {...user}
+  // const serializedUser = user ? { user: user?.user } : null;
   return (
     <div className="fixed w-full z-40 ">
       <nav className=" flex justify-between items-center max-w-7xl mx-auto py-2 px-2 overflow-hidden shadow-xs bg-white">
@@ -31,7 +33,10 @@ const Navbar = async() => {
           ))}
         </ul>
         <div className="flex justify-center items-center">
-          <AppointmentSearchAndLogin user={user}></AppointmentSearchAndLogin>
+          <AppointmentSearchAndLogin></AppointmentSearchAndLogin>
+          {/* <AppointmentSearchAndLogin
+            user={serializedUser}
+          ></AppointmentSearchAndLogin> */}
           <SmallDeviceNavbar></SmallDeviceNavbar>
         </div>
       </nav>
