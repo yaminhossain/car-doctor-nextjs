@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 const SignInPageForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const [passwordSeen, setPasswordSeen] = useState(false); // For eye button in password field
-  const [recaptchaValidation, setRecaptchaValidation] = useState(true); // set false
+  const [recaptchaValidation, setRecaptchaValidation] = useState(false); 
   const router = useRouter();
 
   //=======Google reCAPTCHA handler============

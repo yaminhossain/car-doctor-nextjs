@@ -47,14 +47,21 @@ export const authOptions = {
   ],
   callbacks: {
     async signIn({ user, account }) {
-      console.log("==========users from signin callbacks==========", user);
+      console.log(
+        "==========users from signin callbacks==========",
+        user,
+        account
+      );
       if (account) {
-        const { name, email, image:userImage } = user;
+        const { name,id, email } = user;
         const { provider, providerAccountId } = account;
+        if (provider === "facebook") {
+          user.image="";
+        }
         const payload = {
           name,
           email,
-          image: userImage,
+          image: user.image,
           provider,
           providerAccountId,
           role: "user",

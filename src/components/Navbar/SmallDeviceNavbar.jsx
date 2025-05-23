@@ -6,6 +6,8 @@ import Link from "next/link";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { FaRegUser } from "react-icons/fa";
 import ActiveLink from "./ActiveLink";
+import { useSession } from "next-auth/react";
+import SignOutButton from "../SignOutButton/SignOutButton";
 
 const SmallDeviceNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,15 +26,13 @@ const SmallDeviceNavbar = () => {
       document.body.style.overflow = "auto"; // Cleanup function in case navbar unmounts
     };
   }, [isOpen]);
-  // dummy user
-  const user = true;
+  const clientOnlyUser = useSession();
 
   return (
     <div className="block lg:hidden px-4 lg:px-0">
       <button onClick={navbarHandler}>
         <AiOutlineMenu className="size-6 cursor-pointer pt-1" />
       </button>
-
       {/* nav bar */}
       <div
         className={`${
@@ -63,15 +63,12 @@ const SmallDeviceNavbar = () => {
               </li>
             ))}
           </ul>
-          {user ? (
-            <Link
-              href={"/user-profile"}
-              className="flex items-center gap-2 ms-7 mt-7"
-              onClick={() => navbarHandler()}
-            >
-              <FaRegUser className="size-7 border rounded-full p-2" />
-              <p>Profile</p>
-            </Link>
+          {clientOnlyUser ? (
+            <>
+              <div className="px-7 w-full" onClick={() => navbarHandler()}>
+                <SignOutButton></SignOutButton>
+              </div>
+            </>
           ) : (
             <button
               className="button-outline-red ms-7"

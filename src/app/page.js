@@ -10,7 +10,7 @@ import Spinners from "@/components/Spinners/Spinners";
 
 export default function Home() {
   return (
-    <div>
+    <div className="relative">
       {/* Banner section */}
       <section className=" md:py-4 p-2 md:px-2">
         <Carousel></Carousel>

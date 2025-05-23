@@ -14,7 +14,7 @@ const Navbar = async () => {
   // const serializedUser = user ? { user: user?.user } : null;
   return (
     <div className="fixed w-full z-40 ">
-      <nav className=" flex justify-between items-center max-w-7xl mx-auto py-2 px-2 overflow-hidden shadow-xs bg-white">
+      <nav className="flex justify-between items-center max-w-7xl mx-auto py-2 px-2 shadow-xs bg-white ">
         <Link href={"/"}>
           <Image
             src={"/assets/logo/logo.svg"}
@@ -40,6 +40,7 @@ const Navbar = async () => {
           <SmallDeviceNavbar></SmallDeviceNavbar>
         </div>
       </nav>
+
     </div>
   );
 };
