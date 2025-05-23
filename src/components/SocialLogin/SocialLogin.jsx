@@ -23,9 +23,12 @@ const SocialLogin = () => {
             <p>Facebook</p>
           </div>
         </div>
-        {/* -----------linkedin---------------- */}
+        {/* -----------Github---------------- */}
         <div className="relative group">
-          <button className="rounded-full p-2 border border-gray-300 cursor-pointer hover:bg-[#ff3811] hover:text-white mx-4">
+          <button
+            className="rounded-full p-2 border border-gray-300 cursor-pointer hover:bg-[#ff3811] hover:text-white mx-4"
+            onClick={() => socialLoginHandler("github")}
+          >
             <FaGithub className="text-3xl text-gray-700 hover:text-white" />
           </button>
           {/*-------- tool tips---- */}

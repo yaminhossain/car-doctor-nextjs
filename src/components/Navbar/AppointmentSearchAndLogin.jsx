@@ -54,11 +54,6 @@ const AppointmentSearchAndLogin = () => {
           </Link>
         )}
       </div>
-      {/* <div className="fixed w-full h-5 bg-amber-300 top-0 right-0 z-40">
-        <div className="w-full h-5 bg-red-300 max-w-7xl mx-auto flex justify-end   ">
-          <div className="w-96 h-96 bg-purple-200 "></div>
-        </div>
-      </div> */}
     </>
   );
 };
