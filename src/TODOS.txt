@@ -10,7 +10,15 @@
 * NextAuth (redirect callback) function handling from authOptions.
 * NextAuth redirection handling after a successful login using social.
 * NextAuth fully recheck
-
+* mail: admin@gmail.com 
+  password: pa$$w0rD
+* store the uniqueID for credential providerAccountID
+* use providerAccountID for getting unique user. এখানে user কে fucntion and api call এর মাঝেই fetch করব। অন্য জায়গায় শুধু call করব।
+*    // if (user && user.provider !=="credentials") {
+      //   const userCollection = connectDB(collectionNames.USERS);
+      //   const socialProviderUser = await userCollection.findOne(user.providerAccountId)
+      //   token.id = socialProviderUser[_id].toString();
+      // }
 
 ========================DONE===========DONE====================================================
 * [DONE] domain name and redirect domain name setup for google cloud for authentication after hosting.

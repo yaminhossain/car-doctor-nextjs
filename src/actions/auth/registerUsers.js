@@ -4,12 +4,15 @@ import bcrypt from "bcrypt";
 import connectDB, { collectionNames } from "@/lib/connectDB";
 
 const registerUsers = async ({ name, email, confirmPassword: password }) => {
+  function getRandom15DigitNumber() {
+    return Math.floor(100000000000000 + Math.random() * 900000000000000);
+  }
   const insertionData = { name, email, password };
   insertionData.image = "";
   insertionData.coverPhoto = "";
   insertionData.role = "user";
   insertionData.provider = "credentials";
-  insertionData.providerAccountId = null;
+  insertionData.providerAccountId = getRandom15DigitNumber().toString();
 
   // ======Hashing the password using bcrypt and 10 round of salt=====
   const hashedPassword = await bcrypt.hash(password, 10);

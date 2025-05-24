@@ -7,11 +7,23 @@ import AppointmentSearchAndLogin from "./AppointmentSearchAndLogin";
 import ActiveLink from "./ActiveLink";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
+import userData from "@/lib/userData";
 
 const Navbar = async () => {
-  // const user = await getServerSession(authOptions);
+  const serverOnlyUser = await getServerSession(authOptions);
   // Serializing data in the server side for sending the data to client side as a props. We can also use spread operation like, {...user}
   // const serializedUser = user ? { user: user?.user } : null;
+const user = userData(serverOnlyUser);
+
+
+
+
+
+
+
+
+
+
   return (
     <div className="fixed w-full z-40 ">
       <nav className="flex justify-between items-center max-w-7xl mx-auto py-2 px-2 shadow-xs bg-white ">

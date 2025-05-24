@@ -4,6 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import GitHubProvider from "next-auth/providers/github";
+import connectDB, { collectionNames } from "@/lib/connectDB";
 
 export const authOptions = {
   session: {
@@ -52,11 +53,7 @@ export const authOptions = {
   ],
   callbacks: {
     async signIn({ user, account }) {
-      console.log(
-        "==========users from signin callbacks==========",
-        user,
-        account
-      );
+      // console.log("==========users from signin callbacks==========",  user,account);
       if (account) {
         const { name, id, email } = user;
         const { provider, providerAccountId } = account;
@@ -84,15 +81,23 @@ export const authOptions = {
       return baseUrl;
     },
     async jwt({ token, user }) {
-      // console.log("user:", user);
+      // console.log("user from JWT:", user);
       // console.log("token:", token);
+
       if (user) {
-        token.coverPhoto = user.coverPhoto;
+        if (user.provider === "credentials") {
+          token.id = user._id.toString();
+        }
+        else{
+          const usersCollection = connectDB(collectionNames.USERS);
+          const socialProviderUser = await usersCollection.findOne({providerAccountId: user.id});
+          token.id = socialProviderUser._id;
+        }
       }
       return token;
     },
     async session({ session, token }) {
-      session.user.coverPhoto = token.coverPhoto;
+      session.user.id = token.id;
       return session;
     },
   },

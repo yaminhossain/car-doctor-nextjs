@@ -7,7 +7,6 @@ import { useSession } from "next-auth/react";
 import UserProfileDropdown from "./UserProfileDropdown";
 import Image from "next/image";
 import userLogo from "@/../public/assets/logo/user logo.png";
-
 const AppointmentSearchAndLogin = () => {
   // Accessing the session data using NextAuth's useSession() hook. Works for both social providers and credentials provider
   const clientOnlyUser = useSession();
