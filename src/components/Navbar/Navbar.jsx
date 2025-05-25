@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -13,17 +14,7 @@ const Navbar = async () => {
   const serverOnlyUser = await getServerSession(authOptions);
   // Serializing data in the server side for sending the data to client side as a props. We can also use spread operation like, {...user}
   // const serializedUser = user ? { user: user?.user } : null;
-const user = userData(serverOnlyUser);
-
-
-
-
-
-
-
-
-
-
+  const userInformation = await userData(serverOnlyUser?.user?.id);
   return (
     <div className="fixed w-full z-40 ">
       <nav className="flex justify-between items-center max-w-7xl mx-auto py-2 px-2 shadow-xs bg-white ">
@@ -36,7 +27,7 @@ const user = userData(serverOnlyUser);
           ></Image>
         </Link>
         <ul className="hidden lg:flex">
-          {NavMenus.map((menu, index) => (
+          {NavMenus(userInformation?.role).map((menu, index) => (
             <li key={index}>
               <ActiveLink href={menu.path} className={`mx-5`}>
                 {menu.pathName}
@@ -52,7 +43,6 @@ const user = userData(serverOnlyUser);
           <SmallDeviceNavbar></SmallDeviceNavbar>
         </div>
       </nav>
-
     </div>
   );
 };

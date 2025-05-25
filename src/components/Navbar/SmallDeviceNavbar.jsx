@@ -2,15 +2,16 @@
 import { useEffect, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import NavMenus from "./NavMenus";
-import Link from "next/link";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import { FaRegUser } from "react-icons/fa";
 import ActiveLink from "./ActiveLink";
 import { useSession } from "next-auth/react";
 import SignOutButton from "../SignOutButton/SignOutButton";
+import axios from "axios";
 
 const SmallDeviceNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const clientOnlyUser = useSession();
   const navbarHandler = () => {
     setIsOpen(!isOpen);
     // console.log("Navbar Clicked", isOpen);
@@ -21,12 +22,15 @@ const SmallDeviceNavbar = () => {
     } else {
       document.body.style.overflow = "auto"; // Enable scrolling again
     }
-
     return () => {
       document.body.style.overflow = "auto"; // Cleanup function in case navbar unmounts
     };
   }, [isOpen]);
-  const clientOnlyUser = useSession();
+
+  // Fetching user data
+  useEffect(() => {
+    axios.get("/api/users").then((data) => setUser(data));
+  }, []);
 
   return (
     <div className="block lg:hidden px-4 lg:px-0">
@@ -53,7 +57,7 @@ const SmallDeviceNavbar = () => {
           </button>
 
           <ul>
-            {NavMenus.map((menu, index) => (
+            {NavMenus(user?.data?.role).map((menu, index) => (
               <li
                 key={index}
                 className="ms-7 my-7"
@@ -63,19 +67,12 @@ const SmallDeviceNavbar = () => {
               </li>
             ))}
           </ul>
-          {clientOnlyUser ? (
+          {clientOnlyUser && (
             <>
               <div className="px-7 w-full" onClick={() => navbarHandler()}>
                 <SignOutButton></SignOutButton>
               </div>
             </>
-          ) : (
-            <button
-              className="button-outline-red ms-7"
-              onClick={() => navbarHandler()}
-            >
-              Log In
-            </button>
           )}
         </div>
       </div>

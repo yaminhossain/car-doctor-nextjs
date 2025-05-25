@@ -1,10 +1,10 @@
-import connectDB from "./connectDB";
-const userData = async (serverOnlyUser) => {
-  console.log("++++++SERVER USER+++++++++++", serverOnlyUser);
-  const userCollection = connectDB("USER");
-  // const  result = await userCollection.findOne(e)
+import { ObjectId } from "mongodb";
+import connectDB, { collectionNames } from "./connectDB";
 
-  // return result;
+const userData = async (userId) => {
+  const usersCollection = connectDB(collectionNames.USERS);
+  const user = await usersCollection.findOne({ _id: new ObjectId(userId) });
+  return user;
 };
 
 export default userData;

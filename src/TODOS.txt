@@ -1,24 +1,11 @@
-*Meta data heading for both Sign and sign up page
-*not-found.js hiding nav bar.
-*loading skeleton for authentication route group
-* Adding https://car-doctor-nextjs-rho.vercel.app/api/auth/callback/google for google cloud authorized redirect URL. 
-* Adding https://car-doctor-nextjs-rho.vercel.app for google cloud authorize origin.
-* NEXTAUTH_URL=https://example.com in .env file, option for next auth after hosting the site
-* domain name setup for google reCaptcha in the google cloud console after hosting.
-* "isVerified" property needs to be added for every user in users collection.
+* Meta data heading for both Sign and sign up page
+* not-found.js hiding nav bar.
 * user authentication handling for email in socialProvider server action
 * NextAuth (redirect callback) function handling from authOptions.
 * NextAuth redirection handling after a successful login using social.
-* NextAuth fully recheck
 * mail: admin@gmail.com 
   password: pa$$w0rD
-* store the uniqueID for credential providerAccountID
-* use providerAccountID for getting unique user. এখানে user কে fucntion and api call এর মাঝেই fetch করব। অন্য জায়গায় শুধু call করব।
-*    // if (user && user.provider !=="credentials") {
-      //   const userCollection = connectDB(collectionNames.USERS);
-      //   const socialProviderUser = await userCollection.findOne(user.providerAccountId)
-      //   token.id = socialProviderUser[_id].toString();
-      // }
+* Try {force dynamic} for solving data fetching issues for navbar
 
 ========================DONE===========DONE====================================================
 * [DONE] domain name and redirect domain name setup for google cloud for authentication after hosting.
@@ -27,3 +14,14 @@
 * [DONE] check whether the useSession( ) hook works for the social media provider also.
 * [DONE]  NextAuth callback handling for email and password auth for storing data in local storage.
 * [PARTIALLY DONE] "use client" for <SessionProvider/>(Avoid using <SessionProvider></SessionProvider>)
+* [DONE] Adding https://car-doctor-nextjs-rho.vercel.app/api/auth/callback/google for google cloud authorized redirect URL. 
+* [DONE] Adding https://car-doctor-nextjs-rho.vercel.app for google cloud authorize origin.
+* [DONE] NEXTAUTH_URL=https://example.com in .env file, option for next auth after hosting the site
+* [DONE] domain name setup for google reCaptcha in the google cloud console after hosting.
+* [DONE] API for user data and Small navbar handling
+
+
+========================ABORTED===========ABORTED====================================================
+* [ABORTED] "isVerified" property needs to be added for every user in users collection.
+* [ABORTED] loading skeleton for authentication route group
+* [ABORTED] NextAuth fully recheck
